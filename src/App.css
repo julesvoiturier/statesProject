@@ -1,0 +1,29 @@
+@font-face {
+  font-family: light;
+  src: url(./assets/fonts/Ubuntu/Ubuntu-Light.ttf);
+}
+@font-face {
+  font-family: regular;
+  src: url(./assets/fonts/Ubuntu/Ubuntu-Regular.ttf);
+}
+@font-face {
+  font-family: bold;
+  src: url(./assets/fonts/Ubuntu/Ubuntu-Bold.ttf);
+}
+@font-face {
+  font-family: medium;
+  src: url(./assets/fonts/Ubuntu/Ubuntu-Medium.ttf);
+}
+
+.App{
+  font-family: regular;
+}
+
+.sidebar{
+  background-image: url(./assets/Form_project/img_form/bg-sidebar-desktop.svg);
+  background-size: cover;
+}
+
+*{
+  transition: 0.1s;
+}
