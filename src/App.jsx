@@ -21,6 +21,11 @@ function App() {
 
   const [page, setPage] = useState(1)
 
+  const [nameChange, setNameChange] = useState("")
+  const [emailChange, setEmailChange] = useState("")
+  const [phoneChange, setPhoneChange] = useState("")
+  const [completed, setCompleted] = useState(false)
+
   const [selected, setSelected] = useState(1)
   const [selectedPlan, setSelectedPlan] = useState("Arcade")
   
@@ -32,12 +37,21 @@ function App() {
   const [addOn1, setAddOn1] = useState(false)
   const [addOn2, setAddOn2] = useState(false)
   const [addOn3, setAddOn3] = useState(false)
+
   const [addOnPrice1, setAddOnPrice1] = useState(0)
   const [addOnPrice2, setAddOnPrice2] = useState(0)
   const [addOnPrice3, setAddOnPrice3] = useState(0)
 
   const [finalAddOns, setFinalAddOns] = useState([])
   const [addOnsPrice, setAddOnsPrice] = useState(0)
+
+  useEffect(() => {
+    if (nameChange != "" & emailChange != "" && phoneChange != "") {
+      setCompleted(true)
+    } else {
+      setCompleted(false)
+    }
+  }, [nameChange, emailChange, phoneChange]);
 
   useEffect(() => {
 
@@ -66,21 +80,21 @@ function App() {
   }, [addOn1, addOn2, addOn3, monthYear, selectedPlan]);
 
   return (
-    <div className='App w-screen h-screen max-md:h-[950px] bg-[#f2f2f2]'>
+    <div className='App w-screen h-screen max-md:h-[950px] bg-[#f2f2f2] max-sm:bg-white max-sm:h-[880px]'>
       <div className='w-full h-full flex justify-center items-center'>
         <div className='w-[65%] max-md:w-[80%] max-sm:w-full h-[70%] max-md:h-[80%] bg-white rounded-[30px] overflow-hidden p-4 max-sm:p-4'>
           <div className='w-full h-full rounded-[15px] flex max-md:flex-col max-md:p-4'>
             <SideBar Page={page}/>
             <div className='w-[70%] h-[100%] pl-4 relative max-md:w-full max-md:h-[80%] max-md:px-0 max-sm:h-[90%]'>
               <div className='h-[80%] w-full'>
-                {page == 1 ? <YourInfo/> : ""}
+                {page == 1 ? <YourInfo setCompleted={setCompleted} setNameChange={setNameChange} setEmailChange={setEmailChange} setPhoneChange={setPhoneChange} nameChange={nameChange} emailChange={emailChange} phoneChange={phoneChange}/> : ""}
                 {page == 2 ? <SelectPlan plan={plan} setPlan={setPlan} setSelected={setSelected} selected={selected} IconAdvanced={IconAdvanced} IconArcade={IconArcade} IconPro={IconPro} SetSelectedPlan={setSelectedPlan} SetMonthYear={setMonthYear} MonthYear={monthYear} SetPlanPrice={setPlanPrice}/> : ""}
                 {page == 3 ? <AddOns SetAddOn1={setAddOn1} SetAddOn2={setAddOn2} SetAddOn3={setAddOn3} AddOn1={addOn1} AddOn2={addOn2} AddOn3={addOn3} SetAddOnPrice1={setAddOnPrice1} SetAddOnPrice2={setAddOnPrice2} SetAddOnPrice3={setAddOnPrice3} MonthYear={monthYear}/> : ""}
                 {page == 4 ? <Summary SetPage={setPage} FinalPlan={finalPlan} FinalAddOns={finalAddOns} MonthYear={monthYear} PlanPrice={planPrice} AddOnPrice1={addOnPrice1} AddOnPrice2={addOnPrice2} AddOnPrice3={addOnPrice3}/> : ""}
                 {page == 5 ? <Thanks ThankYou={ThankYou}/> : ""} 
               </div>
               <div className='buttons h-[20%] max-md:h-[20%] max-md:pb-4 max-sm:h-[10%]'>
-                <Buttons Page={page} SetPage={setPage}/>
+                <Buttons Page={page} SetPage={setPage} completed={completed}/>
               </div>
             </div>
             

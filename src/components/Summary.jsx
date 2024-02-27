@@ -5,7 +5,7 @@ const Summary = (props) => {
     const [totalPrice, setTotalPrice] = useState(props.AddOnPrice1 + props.AddOnPrice2 + props.AddOnPrice3 + props.PlanPrice)
 
     return (
-        <div className='bg-white w-full h-full rounded-[15px] px-[100px] pt-[50px] max-md:p-0'>
+        <div className='bg-white w-full h-full rounded-[15px] px-[100px] pt-[50px] max-md:p-0 max-sm:h-[400px]'>
             <p className='text-[40px] font-[bold] text-blue-950 max-md:pt-6'>Finishing up</p>
             <p className='text-[16px] opacity-50 text-blue-950'>Double check everything looks OK before confirming</p>
             <div className='bg-slate-100 w-full h-auto mt-[50px] rounded-[10px] px-8 py-6'>
@@ -37,7 +37,7 @@ const Summary = (props) => {
             </div>  
             <div className='flex justify-between items-center'>
                 <div className='px-8 py-6 opacity-40'>Total (per <span className='lowercase'>{props.MonthYear})</span></div> 
-                <div className='px-8 py-6 font-[bold] text-blue-900 text-[20px]'>${props.MonthYear == "Month" ? `${totalPrice}/mo` : `${totalPrice}/yr`}</div> 
+                <div className='px-8 py-6 font-[bold] text-blue-900'>${props.MonthYear == "Month" ? `${totalPrice}/mo` : `${totalPrice}/yr`}</div> 
             </div>
         </div>
     );
